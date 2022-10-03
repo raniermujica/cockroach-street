@@ -16,19 +16,27 @@ class cockroachFor {
     }
 
     forwardCockroach = () => {  
-        this.x = this.x + this.speed * 1.5
+        if (this.x < (canvas.width - this.w)) {
+            this.x = this.x + this.speed * 1.5
+        }  
     }
 
     backCockroach = () => { 
-        this.x = this.x - this.speed * 1.5
+        if (this.x > 0) {
+            this.x = this.x - this.speed * 1.5
+        }   
     }
     
     upCockroach = () => {
-        this.y = this.y - this.speed * 1.5
+        if (this.y > 0) {
+            this.y = this.y - this.speed * 1.5
+        }  
     }
 
     downCockroach = () => {
-        this.y = this.y + this.speed * 1.5
+        if (this.y < (canvas.height - this.h)) {
+            this.y = this.y + this.speed * 1.5
+        }
     }
     
 }

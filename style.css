@@ -17,8 +17,7 @@ body {
 }
 
 #start-btn {
-    margin-top: 60px;
-    
+    margin-top: 60px; 
 }
 
 #my-canvas {
@@ -26,6 +25,15 @@ body {
     display: none;
     margin-top: 15vh;
 }
+
+#game-over {
+    display: none;
+    width: 100;
+}
+#restart-btn {
+    margin-top: 60px;
+}
+
 /*
 .container {
     display: grid;
