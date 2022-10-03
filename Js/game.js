@@ -7,10 +7,11 @@ class Game {
         //!this.background.src = "./images/acera-imagen-fondo.jpg"
         //cucaracha
         this.cockroachPlayer = new cockroachFor()
-        this.cockroachPlayerBack = new cockroachBack()
+        
         //pisadas
         //this.stepsObs = new steps()
         this.stepsObsArr = []
+        this.pointsArr = []
         //comida
         //alcantarillas
         this.counter = 0;
@@ -33,10 +34,17 @@ class Game {
             let stepsLoop = new steps()
             this.stepsObsArr.push(stepsLoop)
         }
-       // if (this.stepsObsArr.length === 0) {
-            
+       // if (this.stepsObsArr.length === 0) {      
        // }
     }
+
+    addPoints = () => {
+        if (this.counter % 150 === 0) {
+            let pointsLoop = new points()
+            this.pointsArr.push(pointsLoop)
+        }
+    }
+
 
 
     gameLoop = () => {
@@ -50,7 +58,10 @@ class Game {
             eachSteps.moveSteps()
         })
         this.addSteps()
-        
+        this.pointsArr.forEach((eachPoints) => {
+            eachPoints.movePoints()
+        })
+        this.addPoints()
         
         
         //dibujado de los elementos
@@ -60,6 +71,9 @@ class Game {
         //this.cockroachPlayerBack.drawCockroach()
         this.stepsObsArr.forEach((eachSteps) => {
             eachSteps.drawSteps()
+        })
+        this.pointsArr.forEach((eachPoints) => {
+            eachPoints.drawPoints()
         })
         //recursion
         requestAnimationFrame(this.gameLoop)

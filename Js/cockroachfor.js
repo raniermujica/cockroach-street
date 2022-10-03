@@ -15,27 +15,20 @@ class cockroachFor {
         ctx.drawImage(this.img, this.x, this.y, this.w, this.h)
     }
 
-    forwardCockroach = () => {
-       
+    forwardCockroach = () => {  
         this.x = this.x + this.speed * 1.5
-    
     }
 
-    backCockroach = () => {
-       
+    backCockroach = () => { 
         this.x = this.x - this.speed * 1.5
-    
     }
-
-    upCockroach = () => {
-       
-        this.y = this.y - this.speed * 1.5
     
+    upCockroach = () => {
+        this.y = this.y - this.speed * 1.5
     }
 
     downCockroach = () => {
-       
         this.y = this.y + this.speed * 1.5
-    
     }
+    
 }
