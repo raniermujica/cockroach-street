@@ -4,7 +4,7 @@ class steps {
         this.img = new Image()
         this.img.src = "./images/pasos-obstaculos.png"
         this.x = canvas.width;
-        let randomSteps = Math.random() * (canvas.height - 60)
+        let randomSteps = Math.random() * (canvas.height - 90)
         let randomStepsFinal = Math.floor(randomSteps)
         this.y = randomStepsFinal;
         this.w = 120;
