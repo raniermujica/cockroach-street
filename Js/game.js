@@ -9,8 +9,11 @@ class Game {
         this.cockroachPlayer = new cockroachFor()
         this.cockroachPlayerBack = new cockroachBack()
         //pisadas
+        //this.stepsObs = new steps()
+        this.stepsObsArr = []
         //comida
         //alcantarillas
+        this.counter = 0;
     }
     //metodos o acciones del juego:
     //dibujar fondo
@@ -25,11 +28,28 @@ class Game {
     //colision con la alcantarilla
     //score
 
+    addSteps = () => {
+        if (this.counter % 150 === 0) {
+            let stepsLoop = new steps()
+            this.stepsObsArr.push(stepsLoop)
+        }
+       // if (this.stepsObsArr.length === 0) {
+            
+       // }
+    }
+
+
     gameLoop = () => {
+        this.counter = this.counter + 1
         //console.log("ejecutando juego")
         //Limpiar canvas
         ctx.clearRect(0, 0, canvas.clientWidth, canvas.height)
-        //acciones de los elementos del juego
+        //acciones de los elementos del juego:
+        //this.stepsObs.moveSteps()
+        this.stepsObsArr.forEach((eachSteps) => {
+            eachSteps.moveSteps()
+        })
+        this.addSteps()
         
         
         
@@ -37,7 +57,10 @@ class Game {
         //!this.drawBackground()
         this.backgroundMov.drawBackground()
         this.cockroachPlayer.drawCockroach()
-        this.cockroachPlayerBack.drawCockroach()
+        //this.cockroachPlayerBack.drawCockroach()
+        this.stepsObsArr.forEach((eachSteps) => {
+            eachSteps.drawSteps()
+        })
         //recursion
         requestAnimationFrame(this.gameLoop)
     }

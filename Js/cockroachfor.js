@@ -7,7 +7,7 @@ class cockroachFor {
         this.y = 233;
         this.w = 60;
         this.h = 60;
-        this.speed = 25;
+        this.speed = 35;
 
     }
 
@@ -16,26 +16,26 @@ class cockroachFor {
     }
 
     forwardCockroach = () => {
-        if (this.x < this.w) {
-        this.x = this.x + this.speed
-    }
+       
+        this.x = this.x + this.speed * 1.5
+    
     }
 
     backCockroach = () => {
-        if (this.x > 0) {
-        this.x = this.x - this.speed
-    }
+       
+        this.x = this.x - this.speed * 1.5
+    
     }
 
     upCockroach = () => {
-        if (this.y > 0) {
-        this.y = this.y - this.speed
-    }
+       
+        this.y = this.y - this.speed * 1.5
+    
     }
 
     downCockroach = () => {
-        if (this.y < this.h) {
-        this.y = this.y + this.speed
-    }
+       
+        this.y = this.y + this.speed * 1.5
+    
     }
 }
