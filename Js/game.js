@@ -7,19 +7,23 @@ class Game {
     //!this.background.src = "./images/acera-imagen-fondo.jpg"
     //cucaracha
     this.cockroachPlayer = new cockroachFor();
+    //this.lifeImage = new lifeCockroach();
 
     //pisadas
     //this.stepsObs = new steps()
     this.stepsObsArr = [];
     this.pointsArr = [];
+    //this.sewerArr = [];
     //comida
+    
     //alcantarillas
+    
     this.counter = 0;
 
     this.isGameOn = true
 
   }
-  //metodos o acciones del juego:
+  //metodos o acciones del juego: 
   //dibujar fondo
   //!drawBackground = () => {
   //!   ctx.drawImage(this.background, 0, 0, canvas.width, canvas.height)
@@ -27,7 +31,7 @@ class Game {
 
   //colision de la cucaracha con las pisadas
   cockroachStepsCollision = () => {
-    this.stepsObsArr.forEach((eachSteps) => {
+    this.stepsObsArr.forEach((eachSteps, indexI, newElement) => {
         if (this.cockroachPlayer.x < eachSteps.x + (eachSteps.w - 10) &&
             (this.cockroachPlayer.x - 10) + (this.cockroachPlayer.w - 10) > eachSteps.x &&
             (this.cockroachPlayer.y + 15) < eachSteps.y + (eachSteps.h - 10) &&
@@ -35,21 +39,27 @@ class Game {
             // ¡colisión detectada!
            // console.log("elementos colisionan") 
            this.gameOver()
+          
         } 
     })
   };
 
   //colision de la cucaracha con la comida
   cockroachFoodCollision =() => {
-    this.pointsArr.forEach((eachPoints) => {
+    
+    this.pointsArr.forEach((eachPoints, indexI) => {
         if (this.cockroachPlayer.x < eachPoints.x + eachPoints.w &&
             this.cockroachPlayer.x + this.cockroachPlayer.w > eachPoints.x &&
             this.cockroachPlayer.y < eachPoints.y + eachPoints.h &&
             this.cockroachPlayer.h + this.cockroachPlayer.y > eachPoints.y) {
             // ¡colisión detectada!
-            this.foodScore() 
-        } 
+            //this.foodScore()
+            //console.log( this.pointsArr.indexOf(eachPoints) )
+            this.pointsArr.splice(indexI, 1)
+        }  
     })
+    //this.pointsArr.splice(indexFood, 1)
+    
   }
 
   gameOver = () => {
@@ -64,11 +74,16 @@ class Game {
   //colision con la comida
   //colision con la alcantarilla
   //score
-  stepsEraser = () => {
-    if (this.stepsObsArr.length !== 0 && this.stepsObsArr[0].x < -120) {
-        this.stepsObsArr.shift()
+  /*addSewer = () => {
+    let randomSewer = Math.random() * (canvas.height - 90);
+    let randomSewerFinal = Math.floor(randomSewer);
+
+    if (this.counter % 360 === 0) {
+      let sewerLoop = new sewer(randomSewerFinal);
+      this.sewerArr.push(sewerLoop);
     }
   }
+  */
 
   addSteps = () => {
     let randomSteps = Math.random() * (canvas.height - 90);
@@ -87,10 +102,10 @@ class Game {
     }
   };
 
-  foodScore = () => {
-        this.pointsArr.shift()
-        this.score++
-        console.log("el score es")
+  stepsEraser = () => {
+    if (this.stepsObsArr.length !== 0 && this.stepsObsArr[0].x < -120) {
+        this.stepsObsArr.shift()
+    }
   }
 
   foodEraser = () => {
@@ -98,6 +113,8 @@ class Game {
         this.pointsArr.shift()
     }
   }
+
+ 
 
   gameLoop = () => {
     this.counter = this.counter + 1;
@@ -109,6 +126,10 @@ class Game {
     this.stepsObsArr.forEach((eachSteps) => {
       eachSteps.moveSteps();
     });
+    /*this.sewerArr.forEach((eachSewer) => {
+      eachSewer.moveSewer()
+    })
+    */
     this.addSteps();
     this.stepsEraser();
     this.foodEraser();
@@ -116,6 +137,9 @@ class Game {
       eachPoints.movePoints();
     });
     this.addPoints();
+    //this.addSewer()
+    
+    
 
     this.cockroachStepsCollision();
     this.cockroachFoodCollision();
@@ -131,6 +155,11 @@ class Game {
     this.pointsArr.forEach((eachPoints) => {
       eachPoints.drawPoints();
     });
+    /*this.sewerArr.forEach((eachSewer) => {
+      eachSewer.drawSewer();
+    });
+    */
+
     //recursion
     if (this.isGameOn === true) {
         requestAnimationFrame(this.gameLoop);

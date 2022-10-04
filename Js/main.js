@@ -5,6 +5,8 @@ const splashScreen = document.querySelector("#splash-screen");
 const startBtn = document.querySelector("#start-btn");
 const gameOverScreen = document.querySelector("#game-over");
 const restartBtn = document.querySelector("#restart-btn")
+const scoreMarker = document.querySelector("#score")
+
 
 let gameClass;
 
@@ -16,6 +18,8 @@ const startGame = () => {
    splashScreen.style.display = "none"
 
    canvas.style.display = "block"
+   //scoreMarker = "inline"
+   
 
    gameOverScreen.style.display = "none"
 
