@@ -29,9 +29,9 @@ class Game {
   cockroachStepsCollision = () => {
     this.stepsObsArr.forEach((eachSteps) => {
         if (this.cockroachPlayer.x < eachSteps.x + eachSteps.w &&
-            this.cockroachPlayer.x + this.cockroachPlayer.w > eachSteps.x &&
+            this.cockroachPlayer.x + this.cockroachPlayer.w - 10 > eachSteps.x &&
             this.cockroachPlayer.y < eachSteps.y + eachSteps.h &&
-            this.cockroachPlayer.h + this.cockroachPlayer.y > eachSteps.y) {
+            this.cockroachPlayer.h - 15 + this.cockroachPlayer.y > eachSteps.y) {
             // ¡colisión detectada!
            // console.log("elementos colisionan") 
            this.gameOver()
