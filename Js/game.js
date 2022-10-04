@@ -28,10 +28,10 @@ class Game {
   //colision de la cucaracha con las pisadas
   cockroachStepsCollision = () => {
     this.stepsObsArr.forEach((eachSteps) => {
-        if (this.cockroachPlayer.x < eachSteps.x + eachSteps.w &&
-            this.cockroachPlayer.x + this.cockroachPlayer.w - 10 > eachSteps.x &&
-            this.cockroachPlayer.y < eachSteps.y + eachSteps.h &&
-            this.cockroachPlayer.h - 15 + this.cockroachPlayer.y > eachSteps.y) {
+        if (this.cockroachPlayer.x < eachSteps.x + (eachSteps.w - 10) &&
+            (this.cockroachPlayer.x - 10) + (this.cockroachPlayer.w - 10) > eachSteps.x &&
+            (this.cockroachPlayer.y + 15) < eachSteps.y + (eachSteps.h - 10) &&
+            (this.cockroachPlayer.h - 15) + this.cockroachPlayer.y > eachSteps.y) {
             // ¡colisión detectada!
            // console.log("elementos colisionan") 
            this.gameOver()
@@ -74,14 +74,14 @@ class Game {
     let randomSteps = Math.random() * (canvas.height - 90);
     let randomStepsFinal = Math.floor(randomSteps);
 
-    if (this.counter % 150 === 0) {
+    if (this.counter % 90 === 0) {
       let stepsLoop = new steps(randomStepsFinal);
       this.stepsObsArr.push(stepsLoop);
     }
   };
 
   addPoints = () => {
-    if (this.counter % 90 === 0) {
+    if (this.counter % 60 === 0) {
       let pointsLoop = new points();
       this.pointsArr.push(pointsLoop);
     }
@@ -89,6 +89,8 @@ class Game {
 
   foodScore = () => {
         this.pointsArr.shift()
+        this.score++
+        console.log("el score es")
   }
 
   foodEraser = () => {

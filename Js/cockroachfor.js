@@ -18,24 +18,28 @@ class cockroachFor {
     forwardCockroach = () => {  
         if (this.x < (canvas.width - this.w)) {
             this.x = this.x + this.speed * 1.5
+            this.img.src = "./images/cockroach/Animacion/principal.png"
         }  
     }
 
     backCockroach = () => { 
         if (this.x > 0) {
             this.x = this.x - this.speed * 1.5
+            this.img.src = "./images/cockroach/Animacion/back.png"
         }   
     }
-    
+ 
     upCockroach = () => {
         if (this.y > 0) {
             this.y = this.y - this.speed * 1.5
+            this.img.src = "./images/cockroach/Animacion/up.png"
         }  
     }
 
     downCockroach = () => {
         if (this.y < (canvas.height - this.h)) {
             this.y = this.y + this.speed * 1.5
+            this.img.src = "./images/cockroach/Animacion/down.png"
         }
     }
     
