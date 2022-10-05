@@ -4,7 +4,7 @@ class cockroachFor {
         this.img = new Image()
         this.img.src = "./images/cockroach/Animacion/principal.png"
         this.x = 40;
-        this.y = 233;
+        this.y = 400;
         this.w = 60;
         this.h = 60;
         this.speed = 35;
@@ -30,7 +30,7 @@ class cockroachFor {
     }
  
     upCockroach = () => {
-        if (this.y > 0) {
+        if (this.y > 200) {
             this.y = this.y - this.speed * 1.5
             this.img.src = "./images/cockroach/Animacion/up.png"
         }  
@@ -45,6 +45,7 @@ class cockroachFor {
 
     drawHalfLife = () => {
            this.img.src = "./images/cockroach/crushed-cockroach.png"
+        
     }
     
 }

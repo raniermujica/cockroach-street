@@ -13,6 +13,7 @@ class Game {
     //this.stepsObs = new steps()
     this.stepsObsArr = [];
     this.pointsArr = [];
+    this.carsArr = [];
     //this.sewerArr = [];
     //comida
 
@@ -26,6 +27,8 @@ class Game {
     this.lives = 3;
 
     this.foodPointsOn = true;
+
+    
   }
   //metodos o acciones del juego:
   //dibujar fondo
@@ -33,9 +36,11 @@ class Game {
   //!   ctx.drawImage(this.background, 0, 0, canvas.width, canvas.height)
   //!}
 
+  
+
   //colision de la cucaracha con las pisadas
   cockroachStepsCollision = () => {
-    this.stepsObsArr.forEach((eachSteps, indexI, newElement) => {
+    this.stepsObsArr.forEach((eachSteps) => {
       if (
         this.cockroachPlayer.x < eachSteps.x + (eachSteps.w - 10) &&
         this.cockroachPlayer.x - 10 + (this.cockroachPlayer.w - 10) >
@@ -49,6 +54,10 @@ class Game {
         this.lives--;
         this.cockroachPlayer.drawHalfLife()
         this.foodPointsOn = false 
+        setTimeout(() => {
+          this.gameOver()
+        }, 2000)
+        
       }
     });
   };
@@ -101,7 +110,7 @@ class Game {
     let randomSteps = Math.random() * (canvas.height - 90);
     let randomStepsFinal = Math.floor(randomSteps);
 
-    if (this.counter % 90 === 0) {
+    if (this.counter % 60 === 0) {
       let stepsLoop = new steps(randomStepsFinal);
       this.stepsObsArr.push(stepsLoop);
     }
@@ -113,6 +122,13 @@ class Game {
       this.pointsArr.push(pointsLoop);
     }
   };
+
+  addCars = () => {
+    if (this.counter % 360 === 0) {
+      let carsLoop = new car(); 
+      this.carsArr.push(carsLoop)
+    }
+  }
 
   stepsEraser = () => {
     if (this.stepsObsArr.length !== 0 && this.stepsObsArr[0].x < -120) {
@@ -126,16 +142,26 @@ class Game {
     }
   };
 
+  carsEraser = () => {
+    if (this.carsArr.length !== 0 && this.carsArr[0].x > canvas.width) {
+      this.carsArr.shift();
+    }
+  }
+
   drawLives = () => {
-    ctx.font = "40px Arial";
+    ctx.font="40px Verdana";
+    ctx.strokeStyle="#FF914D";
+    ctx.lineWidth = 2;
     let livesStr = `Lives: ${this.lives}`;
-    ctx.fillText(livesStr, 100, 50);
+    ctx.strokeText(livesStr, 100, 100);
   };
 
   drawScore = () => {
-    ctx.font = "40px Arial";
+    ctx.font="40px Verdana";
+    ctx.strokeStyle="#FF914D";
+    ctx.lineWidth = 2;
     let scoreStr = `Score: ${this.score}`;
-    ctx.fillText(scoreStr, 450, 50);
+    ctx.strokeText(scoreStr, 430, 100);
   };
 
   gameLoop = () => {
@@ -155,10 +181,17 @@ class Game {
     this.addSteps();
     this.stepsEraser();
     this.foodEraser();
+    this.carsEraser();
     this.pointsArr.forEach((eachPoints) => {
       eachPoints.movePoints();
     });
+
+    this.carsArr.forEach((eachCars) => {
+      eachCars.moveCars();
+    });
+
     this.addPoints();
+    this.addCars();
     //this.addSewer()
 
     this.cockroachStepsCollision();
@@ -175,6 +208,9 @@ class Game {
     });
     this.pointsArr.forEach((eachPoints) => {
       eachPoints.drawPoints();
+    });
+    this.carsArr.forEach((eachCars) => {
+      eachCars.drawCars();
     });
     this.drawLives();
     this.drawScore();

@@ -13,6 +13,8 @@ let gameClass;
 
 
 
+
+
 // MAIN FUNCTIONS //
 
 const startGame = () => {
@@ -31,23 +33,25 @@ const startGame = () => {
 
 }
 
-
-
 // ADDEVENTLISTENERS //
 
 startBtn.addEventListener("click", startGame)
+   
 window.addEventListener("keydown", (event) => {
-   if (event.code === "ArrowRight") {
-      gameClass.cockroachPlayer.forwardCockroach()
-   } else if (event.code === "ArrowLeft") {
-      gameClass.cockroachPlayer.backCockroach()
-   } else if (event.code === "ArrowUp") {
-      gameClass.cockroachPlayer.upCockroach()
-   } else if (event.code === "ArrowDown") {
-      gameClass.cockroachPlayer.downCockroach()
-   }
-})
+      if (event.code === "ArrowRight") {
+         gameClass.cockroachPlayer.forwardCockroach()
+      } else if (event.code === "ArrowLeft") {
+         gameClass.cockroachPlayer.backCockroach()
+      } else if (event.code === "ArrowUp") {
+         gameClass.cockroachPlayer.upCockroach()
+      } else if (event.code === "ArrowDown") {
+         gameClass.cockroachPlayer.downCockroach()
+      }
+   })
+
 restartBtn.addEventListener("click", startGame)
+
+
 
 
 

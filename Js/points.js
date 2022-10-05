@@ -6,7 +6,7 @@ class points {
         this.x = canvas.width;
         let randomPoints = Math.random() * (canvas.height - 90)
         let randomPointsFinal = Math.floor(randomPoints)
-        this.y = randomPointsFinal;
+        this.y = randomPointsFinal + 200;
         this.w = 40;
         this.h = 30;
         this.speed = 5;

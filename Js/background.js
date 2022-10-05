@@ -2,7 +2,7 @@ class background {
 
     constructor() {
         this.img = new Image()
-        this.img.src = "./images/final-background.png"
+        this.img.src = "./images/fondo-completo.png"
         this.x = 0;
         this.y = 0;
         this.w = canvas.width;

@@ -1,15 +1,15 @@
 class steps {
 
-    constructor(yParam) {
+    constructor() {
         this.img = new Image()
-        this.img.src = "./images/pasos-obstaculos.png"
+        this.img.src = "./images/shoes-steps.png"
         this.x = canvas.width;
         let randomSteps = Math.random() * (canvas.height - 90)
         let randomStepsFinal = Math.floor(randomSteps)
-        this.y = yParam;
-        this.w = 120;
-        this.h = 90;
-        this.speed = 5;
+        this.y = randomStepsFinal + 200;
+        this.w = 150;
+        this.h = 110;
+        this.speed = 8;
     }
 
     drawSteps = () => {
