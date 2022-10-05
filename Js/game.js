@@ -15,15 +15,19 @@ class Game {
     this.pointsArr = [];
     //this.sewerArr = [];
     //comida
-    
+
     //alcantarillas
-    
     this.counter = 0;
 
-    this.isGameOn = true
+    this.score = 0;
 
+    this.isGameOn = true;
+
+    this.lives = 3;
+
+    this.foodPointsOn = true;
   }
-  //metodos o acciones del juego: 
+  //metodos o acciones del juego:
   //dibujar fondo
   //!drawBackground = () => {
   //!   ctx.drawImage(this.background, 0, 0, canvas.width, canvas.height)
@@ -32,44 +36,52 @@ class Game {
   //colision de la cucaracha con las pisadas
   cockroachStepsCollision = () => {
     this.stepsObsArr.forEach((eachSteps, indexI, newElement) => {
-        if (this.cockroachPlayer.x < eachSteps.x + (eachSteps.w - 10) &&
-            (this.cockroachPlayer.x - 10) + (this.cockroachPlayer.w - 10) > eachSteps.x &&
-            (this.cockroachPlayer.y + 15) < eachSteps.y + (eachSteps.h - 10) &&
-            (this.cockroachPlayer.h - 15) + this.cockroachPlayer.y > eachSteps.y) {
-            // ¡colisión detectada!
-           // console.log("elementos colisionan") 
-           this.gameOver()
-          
-        } 
-    })
+      if (
+        this.cockroachPlayer.x < eachSteps.x + (eachSteps.w - 10) &&
+        this.cockroachPlayer.x - 10 + (this.cockroachPlayer.w - 10) >
+          eachSteps.x &&
+        this.cockroachPlayer.y + 15 < eachSteps.y + (eachSteps.h - 10) &&
+        this.cockroachPlayer.h - 15 + this.cockroachPlayer.y > eachSteps.y
+      ) {
+        // ¡colisión detectada!
+        // console.log("elementos colisionan")
+        //this.gameOver()
+        this.lives--;
+        this.cockroachPlayer.drawHalfLife()
+        this.foodPointsOn = false 
+      }
+    });
   };
 
   //colision de la cucaracha con la comida
-  cockroachFoodCollision =() => {
-    
+  cockroachFoodCollision = () => {
     this.pointsArr.forEach((eachPoints, indexI) => {
-        if (this.cockroachPlayer.x < eachPoints.x + eachPoints.w &&
-            this.cockroachPlayer.x + this.cockroachPlayer.w > eachPoints.x &&
-            this.cockroachPlayer.y < eachPoints.y + eachPoints.h &&
-            this.cockroachPlayer.h + this.cockroachPlayer.y > eachPoints.y) {
-            // ¡colisión detectada!
-            //this.foodScore()
-            //console.log( this.pointsArr.indexOf(eachPoints) )
-            this.pointsArr.splice(indexI, 1)
-        }  
-    })
+      if (
+        this.cockroachPlayer.x < eachPoints.x + eachPoints.w &&
+        this.cockroachPlayer.x + this.cockroachPlayer.w > eachPoints.x &&
+        this.cockroachPlayer.y < eachPoints.y + eachPoints.h &&
+        this.cockroachPlayer.h + this.cockroachPlayer.y > eachPoints.y
+      ) {
+        // ¡colisión detectada!
+        //this.foodScore()
+        //console.log( this.pointsArr.indexOf(eachPoints) )
+        if (this.foodPointsOn === true) {
+          this.pointsArr.splice(indexI, 1);
+          this.score++;
+        } 
+      }
+    });
     //this.pointsArr.splice(indexFood, 1)
-    
-  }
+  };
 
   gameOver = () => {
     //detener el juego
-    this.isGameOn = false; 
+    this.isGameOn = false;
     //ocultar el canva
-    canvas.style.display = "none"
+    canvas.style.display = "none";
     //mostrar pantalla gameover
-    gameOverScreen.style.display = "block"
-  }
+    gameOverScreen.style.display = "flex";
+  };
   //animacion de la cucaracha
   //colision con la comida
   //colision con la alcantarilla
@@ -104,17 +116,27 @@ class Game {
 
   stepsEraser = () => {
     if (this.stepsObsArr.length !== 0 && this.stepsObsArr[0].x < -120) {
-        this.stepsObsArr.shift()
+      this.stepsObsArr.shift();
     }
-  }
+  };
 
   foodEraser = () => {
     if (this.pointsArr.length !== 0 && this.pointsArr[0].x < -40) {
-        this.pointsArr.shift()
+      this.pointsArr.shift();
     }
-  }
+  };
 
- 
+  drawLives = () => {
+    ctx.font = "40px Arial";
+    let livesStr = `Lives: ${this.lives}`;
+    ctx.fillText(livesStr, 100, 50);
+  };
+
+  drawScore = () => {
+    ctx.font = "40px Arial";
+    let scoreStr = `Score: ${this.score}`;
+    ctx.fillText(scoreStr, 450, 50);
+  };
 
   gameLoop = () => {
     this.counter = this.counter + 1;
@@ -138,8 +160,6 @@ class Game {
     });
     this.addPoints();
     //this.addSewer()
-    
-    
 
     this.cockroachStepsCollision();
     this.cockroachFoodCollision();
@@ -148,6 +168,7 @@ class Game {
     //!this.drawBackground()
     this.backgroundMov.drawBackground();
     this.cockroachPlayer.drawCockroach();
+    
     //this.cockroachPlayerBack.drawCockroach()
     this.stepsObsArr.forEach((eachSteps) => {
       eachSteps.drawSteps();
@@ -155,6 +176,8 @@ class Game {
     this.pointsArr.forEach((eachPoints) => {
       eachPoints.drawPoints();
     });
+    this.drawLives();
+    this.drawScore();
     /*this.sewerArr.forEach((eachSewer) => {
       eachSewer.drawSewer();
     });
@@ -162,8 +185,7 @@ class Game {
 
     //recursion
     if (this.isGameOn === true) {
-        requestAnimationFrame(this.gameLoop);
-    };
+      requestAnimationFrame(this.gameLoop);
     }
-    
+  };
 }

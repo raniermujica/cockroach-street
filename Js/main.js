@@ -1,11 +1,12 @@
 // VARIABLES //
 const canvas = document.querySelector("#my-canvas");
+const canvaSection = document.querySelector("#canva-complete")
 const ctx = canvas.getContext("2d")
 const splashScreen = document.querySelector("#splash-screen");
 const startBtn = document.querySelector("#start-btn");
 const gameOverScreen = document.querySelector("#game-over");
 const restartBtn = document.querySelector("#restart-btn")
-const scoreMarker = document.querySelector("#score")
+const scoreMarker = document.querySelector("#Score")
 
 
 let gameClass;
@@ -19,6 +20,7 @@ const startGame = () => {
 
    canvas.style.display = "block"
    //scoreMarker = "inline"
+   
    
 
    gameOverScreen.style.display = "none"

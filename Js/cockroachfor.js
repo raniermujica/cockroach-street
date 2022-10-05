@@ -42,5 +42,9 @@ class cockroachFor {
             this.img.src = "./images/cockroach/Animacion/down.png"
         }
     }
+
+    drawHalfLife = () => {
+           this.img.src = "./images/cockroach/crushed-cockroach.png"
+    }
     
 }
