@@ -4,7 +4,7 @@ class points {
         this.img = new Image()
         this.img.src = "./images/shit-obstacle.png"
         this.x = canvas.width;
-        let randomPoints = Math.random() * (canvas.height - 90)
+        let randomPoints = Math.random() * (canvas.height - 250)
         let randomPointsFinal = Math.floor(randomPoints)
         this.y = randomPointsFinal + 200;
         this.w = 40;

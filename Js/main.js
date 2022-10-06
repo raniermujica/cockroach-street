@@ -1,6 +1,6 @@
 // VARIABLES //
 const canvas = document.querySelector("#my-canvas");
-const canvaSection = document.querySelector("#canva-complete")
+const canvaSection = document.querySelector("#game-screen")
 const ctx = canvas.getContext("2d")
 const splashScreen = document.querySelector("#splash-screen");
 const startBtn = document.querySelector("#start-btn");
@@ -15,7 +15,7 @@ const genericMusic = document.querySelector("#generic-audio")
 
 let gameClass;
 let playerClass;
-let newMusic;
+let newMusic = new Audio("./sounds/generic-music.mp3")
 
 
 
@@ -27,10 +27,7 @@ const startGame = () => {
 
    canvas.style.display = "flex"
    //scoreMarker = "inline"
-
-   scoreHealth.display = "inline"
-   
-   
+   canvaSection.style.display = "flex"
 
    gameOverScreen.style.display = "none"
 
@@ -38,7 +35,7 @@ const startGame = () => {
    //console.log(gameClass)
    gameClass.gameLoop()
 
-   newMusic = new Audio("./sounds/generic-music.mp3")
+   
    newMusic.play();
    newMusic.volume = 0.4;
 

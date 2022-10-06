@@ -4,7 +4,7 @@ class goldPoints {
         this.img = new Image()
         this.img.src = "./images/gold-points.png"
         this.x = canvas.width;
-        let randomGoldPoints = Math.random() * (canvas.height - 90)
+        let randomGoldPoints = Math.random() * (canvas.height - 250)
         let randomGoldPointsFinal = Math.floor(randomGoldPoints)
         this.y = randomGoldPointsFinal + 200;
         this.w = 40;

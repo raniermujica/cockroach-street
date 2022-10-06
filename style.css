@@ -12,12 +12,12 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 15vh;
+    margin-top: 10vh;
     
 }
 
-#start-btn, #restart-btn {
-    margin-top: 60px; 
+#start-btn {
+    margin-top: 30px;
     background-color: #511611;
     color: azure;
     padding: 10px;
@@ -33,12 +33,35 @@ body {
     font-family: 'Courier New', Courier, monospace;
 }
 
+#restart-btn {
+    margin-top: 60px; 
+    background-color: #511611;
+    color: azure;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border-color: white;
+    width: 150px;
+    height: 50px;
+    font-size: 25px;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 15px;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
 
 #splash-screen {
     display: flex;
+    
 }
 
-#my-canvas {
+#initial-img {
+    height: 200px;
+}
+
+#game-screen {
     background-color: black;
     display: none;
     
@@ -54,11 +77,15 @@ body {
     width: 800px;
 }
 
-#health-player {
-    display: flex;
-    
-
+#indications-image {
+    width: 200px;
+    margin-top: 20px;
 }
+
+
+
+
+
 
  
 

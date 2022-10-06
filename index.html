@@ -11,9 +11,13 @@
     <div class="container">
       <!--SPLASH SCREEN-->
       <div id="splash-screen" class="container">
-        <img
+        <img id="initial-img"
           src="./images/Splash-screen/main-splash-screen.png"
           alt="cockroach-main-screen"
+        />
+        <img id="indications-image"
+          src="./images/indicaciones.png"
+          alt="indications"
         />
         <button id="start-btn">Start</button>
          <!-- <img src="./images/Splash-screen/foot-btn.png" alt="foot-start-btn" />-->
@@ -21,13 +25,17 @@
       </div>
 
       <!-- GAME SCREEN -->
-      
+      <div id="game-screen">
         <canvas id="my-canvas" width="700" height="700">
-          <div id="health-player" class="container">
-            <img src="./images/cockroach/lives/live-verde.png" alt="high-health" id="image-one"/>
-            <img src="./images/cockroach/lives/live-yellow.png" alt="medium-health" id="image-two"/>
-            <img src="./images/cockroach/lives/live-red.png" alt="low-health" id="image-three"/>
-          </div> 
+          <img
+          src="./images/logo-permanente.png"
+          alt="permanent-logo"
+          />
+          <img
+          src="./images/instructions.png"
+          alt="instructions"
+          /> 
+        </div>
         </canvas>
 
         <!-- GAME HEALTH -->

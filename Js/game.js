@@ -159,6 +159,8 @@ class Game {
     //mostrar pantalla gameover
     gameOverScreen.style.display = "flex";
 
+    newMusic.paused();
+
     
   };
   //animacion de la cucaracha

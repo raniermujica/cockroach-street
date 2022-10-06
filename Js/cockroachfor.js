@@ -18,7 +18,7 @@ class cockroachFor {
     }
 
     forwardCockroach = () => {  
-        if (this.x < (canvas.width - this.w)) {
+        if (this.x <= canvas.width - this.w) {
             this.x = this.x + this.speed * 1.5
             this.img.src = "./images/cockroach/Animacion/principal.png"
             let forwardSound = new Audio("./sounds/cockroach-walk.wav");
