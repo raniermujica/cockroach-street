@@ -7,10 +7,15 @@ const startBtn = document.querySelector("#start-btn");
 const gameOverScreen = document.querySelector("#game-over");
 const restartBtn = document.querySelector("#restart-btn")
 const scoreMarker = document.querySelector("#Score")
+const scoreHealth = document.querySelector("#health-player")
+const genericMusic = document.querySelector("#generic-audio")
+
+
 
 
 let gameClass;
-
+let playerClass;
+let newMusic;
 
 
 
@@ -20,8 +25,10 @@ let gameClass;
 const startGame = () => {
    splashScreen.style.display = "none"
 
-   canvas.style.display = "block"
+   canvas.style.display = "flex"
    //scoreMarker = "inline"
+
+   scoreHealth.display = "inline"
    
    
 
@@ -31,12 +38,30 @@ const startGame = () => {
    //console.log(gameClass)
    gameClass.gameLoop()
 
+   newMusic = new Audio("./sounds/generic-music.mp3")
+   newMusic.play();
+   newMusic.volume = 0.4;
+
+   
+
 }
+
+const playerMove = () => {
+   playerClass = new cockroachFor()
+   gameClass = new Game()
+   
+   if (gameClass.cockroachStepsCollision().playerOn = false) {
+      playerClass.speed = 0
+   }
+   
+}
+
+genericMusic.play();
 
 // ADDEVENTLISTENERS //
 
 startBtn.addEventListener("click", startGame)
-   
+
 window.addEventListener("keydown", (event) => {
       if (event.code === "ArrowRight") {
          gameClass.cockroachPlayer.forwardCockroach()
@@ -49,8 +74,8 @@ window.addEventListener("keydown", (event) => {
       }
    })
 
-restartBtn.addEventListener("click", startGame)
 
+restartBtn.addEventListener("click", startGame)
 
 
 

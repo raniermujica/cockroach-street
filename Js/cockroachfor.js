@@ -1,8 +1,10 @@
 class cockroachFor {
 
     constructor() {
+
         this.img = new Image()
         this.img.src = "./images/cockroach/Animacion/principal.png"
+        
         this.x = 40;
         this.y = 400;
         this.w = 60;
@@ -19,6 +21,9 @@ class cockroachFor {
         if (this.x < (canvas.width - this.w)) {
             this.x = this.x + this.speed * 1.5
             this.img.src = "./images/cockroach/Animacion/principal.png"
+            let forwardSound = new Audio("./sounds/cockroach-walk.wav");
+            forwardSound.play();
+            forwardSound.playbackRate = 2;
         }  
     }
 
@@ -26,6 +31,9 @@ class cockroachFor {
         if (this.x > 0) {
             this.x = this.x - this.speed * 1.5
             this.img.src = "./images/cockroach/Animacion/back.png"
+            let backSound = new Audio("./sounds/cockroach-walk.wav");
+            backSound.play();
+            backSound.playbackRate = 2;
         }   
     }
  
@@ -33,6 +41,9 @@ class cockroachFor {
         if (this.y > 200) {
             this.y = this.y - this.speed * 1.5
             this.img.src = "./images/cockroach/Animacion/up.png"
+            let upSound = new Audio("./sounds/cockroach-walk.wav");
+            upSound.play();
+            upSound.playbackRate = 2;
         }  
     }
 
@@ -40,6 +51,9 @@ class cockroachFor {
         if (this.y < (canvas.height - this.h)) {
             this.y = this.y + this.speed * 1.5
             this.img.src = "./images/cockroach/Animacion/down.png"
+            let downSound = new Audio("./sounds/cockroach-walk.wav");
+            downSound.play();
+            downSound.playbackRate = 2;
         }
     }
 

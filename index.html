@@ -17,16 +17,21 @@
         />
         <button id="start-btn">Start</button>
          <!-- <img src="./images/Splash-screen/foot-btn.png" alt="foot-start-btn" />-->
-        
+        <audio src="./sounds/generic-music.mp3" id="generic-audio"></audio>
       </div>
 
       <!-- GAME SCREEN -->
       
         <canvas id="my-canvas" width="700" height="700">
-            <div id="Score"></div>  
-          <p>Score: <span>0</span></p>
-        </div>
+          <div id="health-player" class="container">
+            <img src="./images/cockroach/lives/live-verde.png" alt="high-health" id="image-one"/>
+            <img src="./images/cockroach/lives/live-yellow.png" alt="medium-health" id="image-two"/>
+            <img src="./images/cockroach/lives/live-red.png" alt="low-health" id="image-three"/>
+          </div> 
         </canvas>
+
+        <!-- GAME HEALTH -->
+        
     
       
 
@@ -50,5 +55,6 @@
     <script src="./Js/sewer.js"></script>
     <script src="./Js/lifeCockroach.js"></script>
     <script src="./Js/car.js"></script>
+    <script src="./Js/goldPoins.js"></script>
   </body>
 </html>
