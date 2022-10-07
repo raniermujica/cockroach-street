@@ -239,7 +239,7 @@ class Game {
     ctx.font = "40px Verdana";
     ctx.strokeStyle = "#FF914D";
     ctx.lineWidth = 2;
-    let livesStr = `Lives: ${this.lives}`;
+    let livesStr = `Health: ${this.lives}`;
     ctx.strokeText(livesStr, 100, 100);
   };
 
