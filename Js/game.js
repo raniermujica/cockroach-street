@@ -6,7 +6,7 @@ class Game {
     //!this.background = new Image()
     //!this.background.src = "./images/acera-imagen-fondo.jpg"
     //cucaracha
-    this.cockroachPlayer = new cockroachFor();
+    this.cockroachPlayer = new cockroach();
     //this.lifeImage = new lifeCockroach();
 
     //pisadas
@@ -28,28 +28,17 @@ class Game {
     this.lives = 3;
 
     this.foodPointsOn = true;
-
-    
-
-    
   }
   //metodos o acciones del juego:
   //dibujar fondo
-  //!drawBackground = () => {
-  //!   ctx.drawImage(this.background, 0, 0, canvas.width, canvas.height)
-  //!}
-
-  
+ 
 
   internCounter = () => {
     this.counter++;
-  }
+  };
 
   //colision de la cucaracha con las pisadas
   cockroachStepsCollision = () => {
-
-
-
     this.stepsObsArr.forEach((eachSteps, indexI) => {
       if (
         this.cockroachPlayer.x < eachSteps.x + (eachSteps.w - 10) &&
@@ -58,40 +47,37 @@ class Game {
         this.cockroachPlayer.y + 15 < eachSteps.y + (eachSteps.h - 10) &&
         this.cockroachPlayer.h - 15 + this.cockroachPlayer.y > eachSteps.y
       ) {
-        
         if (this.lives !== 1) {
           let musicCrush = new Audio("./sounds/crushed-sound.wav");
+          musicCrush.volume = 0.2;
           musicCrush.play();
         }
-           
 
-          this.foodPointsOn = true
-        
+        this.foodPointsOn = true;
+
         let timerInter = setInterval(() => {
-          this.internCounter()
+          this.internCounter();
         }, 1000);
-        console.log(timerInter)
+        console.log(timerInter);
 
         if (this.timerInter === 30) {
-          this.foodPointsOn = true
+          this.foodPointsOn = true;
         }
-        
-
 
         this.cockroachPlayer.drawHalfLife();
-        
+
         this.lives--;
         this.stepsObsArr.splice(indexI, 1);
         if (this.lives === 0) {
           let musicDead = new Audio("./sounds/dead-sound.wav");
-            musicDead.play();
-          this.isGameOn = false
+          musicDead.volume = 0.2;
+          musicDead.play();
+          this.isGameOn = false;
           let timerId = setTimeout(() => {
-            this.gameOver()
+            this.gameOver();
           }, 2000);
         }
-     
-        
+
         // setTimeout(() => {
         //   this.gameOver()
         // }, 2000)
@@ -108,13 +94,13 @@ class Game {
         this.cockroachPlayer.y < eachGoldPoints.y + eachGoldPoints.h &&
         this.cockroachPlayer.h + this.cockroachPlayer.y > eachGoldPoints.y
       ) {
-        
-        this.goldPointsArr.splice(indexI, 1)
+        this.goldPointsArr.splice(indexI, 1);
 
         if (this.lives < 3) {
           let musicGoldPoints = new Audio("./sounds/goldpoints-sound.wav");
-           musicGoldPoints.play();
-          
+          musicGoldPoints.volume = 0.2;
+          musicGoldPoints.play();
+
           this.lives++;
         }
       }
@@ -123,8 +109,6 @@ class Game {
 
   //colision de la cucaracha con la comida
   cockroachFoodCollision = () => {
-
-
     this.pointsArr.forEach((eachPoints, indexI) => {
       if (
         this.cockroachPlayer.x < eachPoints.x + eachPoints.w &&
@@ -141,11 +125,9 @@ class Game {
         }
 
         let musicPoints = new Audio("./sounds/goldpoints-add.wav");
+        musicPoints.volume = 0.2;
         musicPoints.play();
         musicPoints.playbackRate = 2;
-
-         
-        
       }
     });
     //this.pointsArr.splice(indexFood, 1)
@@ -160,8 +142,6 @@ class Game {
     gameOverScreen.style.display = "flex";
 
     newMusic.paused();
-
-    
   };
   //animacion de la cucaracha
   //colision con la comida
@@ -233,8 +213,6 @@ class Game {
     }
   };
 
-
-
   drawLives = () => {
     ctx.font = "40px Verdana";
     ctx.strokeStyle = "#FF914D";
@@ -254,7 +232,6 @@ class Game {
   gameLoop = () => {
     this.counter = this.counter + 1;
 
-    
     //console.log("ejecutando juego")
     //Limpiar canvas
     ctx.clearRect(0, 0, canvas.clientWidth, canvas.height);
@@ -314,7 +291,7 @@ class Game {
 
     this.drawLives();
     this.drawScore();
-    
+
     /*this.sewerArr.forEach((eachSewer) => {
       eachSewer.drawSewer();
     });
